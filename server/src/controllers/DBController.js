@@ -1,33 +1,28 @@
 const axios = require("axios");
 const { Country } = require("../db");
+const URL = "http://localhost:5000/countries";
 
-const loadApiDataToDB = async () => {
+async function loadApiDataToDB() {
   try {
-    const api = await axios.get("http://localhost:5000/countries");
+    const { data } = await axios.get(URL);
 
-    apiInformation = await Country.findAll();
-
-    if (apiInformation.length) return apiInformation;
-
-    const allCountriesInfo = await api.data.map((country) => {
+    const countries = await data.map((country) => {
       return {
         id: country.cca3,
         name: country.name.common,
-        flag: country.flags[1],
+        flag: country.flags.png,
+        continent: country.region,
         capital: country.capital ? country.capital[0] : "Not found",
-        continet: country.region,
         subregion: country.subregion,
         area: country.area,
         population: country.population,
       };
     });
 
-    apiInformation = Country.bulkCreate(allCountriesInfo);
-
-    return apiInformation;
+    await Country.bulkCreate(countries);
   } catch (error) {
     throw new Error(error.message);
   }
-};
+}
 
-module.exports = { loadApiDataToDB };
+module.exports = loadApiDataToDB;
