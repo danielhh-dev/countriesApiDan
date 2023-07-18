@@ -15,8 +15,8 @@
 }
 
 .container img{
-  width: 270px;
-  height: 160px;
+  width: 230px;
+  height: 120px;
   object-fit: cover; 
   -webkit-filter: grayscale(10%);
   filter: grayscale(40%);

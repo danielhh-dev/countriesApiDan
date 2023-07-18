@@ -7,6 +7,12 @@
   --alert: #FF7F76;
   --error: #FF3300;
 }
+h1{
+  margin: 0px;
+  padding-top: 30px;
+  padding-left: 30px;
+  font-size: 90px;
+}
 
 .container{
   display: flex;
@@ -29,7 +35,7 @@
 }
 
 .searchBar input {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 18px;
   background-color: #F7F7F7 ;
   border:none;

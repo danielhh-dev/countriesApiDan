@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CardsContainer } from "../../components/CardsContainer/CardsContainer";
-import { Jumbotron } from "../../components/Jumbotron/Jumbotron";
 import { getCountries, getCountryByName } from "../../redux/actions";
 import searchIcon from "../../images/searchIcon.png";
 
@@ -38,8 +37,7 @@ export const Home = (props) => {
 
   return (
     <div className={style.container}>
-      {/* Render the Jumbotron */}
-      <Jumbotron />
+      <h1>Countries API</h1>
 
       <div className={style.searchBar}>
         {/* Search input field */}

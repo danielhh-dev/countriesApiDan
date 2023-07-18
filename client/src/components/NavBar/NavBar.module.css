@@ -11,35 +11,28 @@
 .container{
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  align-self: flex-start;
-
-  gap: 20px;
+  /* justify-content: flex-end; */
+  align-self: flex-end;
+  gap: 40px;
   margin-top: 20px;
-  margin-left: 10%;
+  margin-right: 10%;
   height: 60px;
 }
 
-.container button{
-  font-family: 'Quicksand', sans-serif;
-  font-size: 18px;
+.container button {
+  font-family: 'Raleway', sans-serif;
+  font-size: 30px;
   font-weight: bold;
+  background-color: transparent;
   border: none;
-  
-
-  background-color: var(--alert);
-  box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
-  -webkit-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
-  -moz-box-shadow: -3px 1px 7px -3px rgba(43,43,43,0.42);
-  border-radius: 15px;
-  height: 50px;
-  padding: 15px;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
 }
+
 
 .container button:hover{
   transform: scale(1.1);
-  border: none;
-  border-radius: 14px;
   font-weight: 600;
-  background-color: var(--ligth-green-two);
+  color: var(--alert);
 }

@@ -1,19 +1,21 @@
 import { Link } from "react-router-dom";
 import style from "./Landing.module.css";
-import landingWorldImage from "../../images/landing_world.png";
+import travelKit from "../../images/travelKit.png";
 
 export const Landing = () => {
   return (
     <div className={style.containerLanding}>
-      <img src={landingWorldImage} alt="World map" />
+      <img src={travelKit} alt="travel kit" />
 
       <div className={style.infoLanding}>
-        <h1>Welcome</h1>
-        <h1>to the Contries API</h1>
-        <p>Here you can learn more about the countries of the world </p>
+        <h1>Explore,</h1>
+        <h1>Discover</h1>
+        <p>
+          Find your passion in every country and create unforgettable memories.
+        </p>
 
         <Link to="/home">
-          <button>Let's Start !</button>
+          <button>Let's do it !</button>
         </Link>
       </div>
     </div>

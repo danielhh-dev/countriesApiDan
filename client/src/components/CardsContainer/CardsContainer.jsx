@@ -118,7 +118,7 @@ export const CardsContainer = ({
         <div className={style.filterBar}>
           <form>
             {/* Filter by Continent */}
-            <label htmlFor="continent">Filter by Continent </label>
+
             <select name="continent" onChange={changeHandler}>
               <option value="All">All continents</option>
               <option value="Africa">Africa</option>

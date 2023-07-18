@@ -4,7 +4,7 @@
   --ligth-green-two: #B6ECC5;
   --green: #92E3A9;
   --yellow: #fafa9c;
-  --alert: #FF7F76;
+  --alert: #F99782;
   --error: #FF3300;
 }
 
@@ -14,10 +14,11 @@
   justify-content: center;
   align-items: center;
   margin-top: 10%;
+  margin-left: -5%;
 }
 
 .containerLanding img{
-  width: 600px;
+  width: 500px;
 }
 
 .infoLanding{
@@ -25,23 +26,24 @@
   flex-direction: column;
   align-items: flex-start;
   align-content: flex-end;
-  margin-left: 60px;
+  margin-left: 40px;
 }
 
 .infoLanding h1{
-  font-size: 50px;
-  margin: 0px;
+  font-size: 80px;
+  padding: 0;
 }
 
 .infoLanding p{
-  font-size: 20px;
+  font-size: 22px;
 }
 
 
 .containerLanding button{
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 600;
-  background-color: var(--yellow);
+  color:var(--text-input-field);
+  background-color: var(--alert);
   border: none;
   border-radius: 15px;
   font-size: 25px;
@@ -50,8 +52,7 @@
 }
 
 .containerLanding button:hover{
-  width: 205px;
-  height: 65px;
+
   background-color: var(--green);
   cursor: pointer;
 }
