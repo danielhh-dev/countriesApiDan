@@ -55,9 +55,6 @@
   width: 500px;
 }
 
-.continent img:hover {
-  transform: scale(1.7);
-}
 
 .extraInfoBox p {
   background-color: #fafa9caa;

@@ -8,15 +8,11 @@ import { validate } from "../../helpers/formValidations";
 import { MultipleSelectionBox } from "../../components/MultipleSelectionBox/MultipleSelectionBox";
 
 export const Form = () => {
-  // Get the 'countries' state from Redux store using 'useSelector'
   const countries = useSelector((state) => state.countries);
-
-  // Create an array of country names and IDs
   let countriesNames = countries.map((country) => {
     return { label: country.name, value: country.id };
   });
 
-  // Initialize form state
   const [form, setForm] = useState({
     name: "",
     level: "",
@@ -25,7 +21,6 @@ export const Form = () => {
     countryid: [],
   });
 
-  // Initialize errors state
   const [errors, setErrors] = useState({
     name: "",
     level: "",
@@ -35,15 +30,12 @@ export const Form = () => {
     formCompleted: "",
   });
 
-  // Initialize formCompleted state
   const [formCompleted, setFormCompleted] = useState(false);
 
-  // Event handler for input changes
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
 
-    // Update form state and perform validation
     setErrors(
       validate({
         ...form,
@@ -57,47 +49,19 @@ export const Form = () => {
     });
   };
 
-  // Event handler for country selection
   const selectHandler = (event) => {
     if (form.countryid.includes(event.target.value)) return;
-
-    // Add selected country to the countryid array in form state
     setForm({ ...form, countryid: [...form.countryid, event.target.value] });
   };
 
-  // Event handler for removing a selected country
   const onDeletee = (country) => {
-    // Remove the selected country from the countryid array in form state
     setForm({
       ...form,
       countryid: form.countryid.filter((c) => c !== country),
     });
   };
 
-  // Event handler for form submission
-  const submitHandler = (event) => {
-    event.preventDefault();
-
-    // Send a POST request to the server with form data
-    axios
-      .post("http://localhost:3001/activities", form)
-      .then((res) => alert(res.data))
-      .catch((err) => alert(err));
-
-    // Reset form state and set formCompleted to false
-    setForm({
-      name: "",
-      level: "",
-      season: "",
-      duration: "",
-      countryid: [],
-    });
-    setFormCompleted(false);
-  };
-
-  // Function to validate form completeness
   const validateForm = () => {
-    // Check if all required fields are filled
     form.name && form.countryid.length >= 1 && form.duration && form.season
       ? setFormCompleted(true)
       : setErrors({
@@ -105,6 +69,25 @@ export const Form = () => {
           formCompleted:
             "Oh Oh! It seems that we are missing information, please complete before submit",
         });
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    validateForm();
+    if (formCompleted) {
+      axios
+        .post("http://localhost:3001/activities", form)
+        .then((res) => alert(res.data))
+        .catch((err) => alert(err));
+      setForm({
+        name: "",
+        level: "",
+        season: "",
+        duration: "",
+        countryid: [],
+      });
+      setFormCompleted(false);
+    }
   };
 
   return (
@@ -275,49 +258,17 @@ export const Form = () => {
             <p className={style.errorSelectText}>Select a season</p>
           )}
 
-          <p className={style.confirmButton} onClick={validateForm}>
-            The information is OK
-          </p>
           {errors.formCompleted && (
             <p className={style.errorText}>{errors.formCompleted}</p>
           )}
 
-          <button
-            type="submit"
-            className={style.submitButton}
-            disabled={formCompleted ? false : true}
-          >
+          <button type="submit" className={style.submitButton}>
             Submit Activity
           </button>
         </form>
         <Link to="/home">
           <button className={style.returnButton}>Return to Home</button>
         </Link>
-      </div>
-
-      <div className={style.confirmForm}>
-        <h3>Please, check the information before you submit✨👀</h3>
-        <p>
-          Activity: <span>{form.name}</span>
-        </p>
-        <p>
-          Countries: <span>{form.countryid.join(", ")}</span>
-        </p>
-        <p>
-          Duration: <span>{form.duration} hours</span>
-        </p>
-        <p>
-          Level of dificulty: <span>{form.level}</span>
-        </p>
-        <p>
-          Season:
-          <span>
-            {form.season === "fall" && "🍂 Fall"}
-            {form.season === "spring" && "🌻 Spring"}
-            {form.season === "winter" && "❄️ Winter"}
-            {form.season === "summer" && "🏖 Summer"}
-          </span>
-        </p>
       </div>
     </div>
   );
